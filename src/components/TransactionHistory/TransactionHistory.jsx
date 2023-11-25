@@ -1,59 +1,33 @@
-import { styled } from '@mui/material/styles';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
-import TableCell, { tableCellClasses } from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 
-const StyledTableCell = styled(TableCell)(({ theme }) => ({
-  [`&.${tableCellClasses.head}`]: {
-    backgroundColor: getDarkColor(),
-    color: 'white',
-  },
-  [`&.${tableCellClasses.body}`]: {
-    fontSize: 14,
-  },
-}));
+import StyledTableCell from './StyledTableCell';
+import StyledTableRow from './StyledTableRow';
 
-const StyledTableRow = styled(TableRow)(({ theme }) => ({
-  '&:nth-of-type(odd)': {
-    backgroundColor: 'rgba(148, 154, 164, 0.26)',
-  },
-  // hide last border
-  '&:last-child td, &:last-child th': {
-    border: 0,
-  },
-}));
+import {
+  styledPaperOverride,
+  styledHeaderCellOverride,
+  styledDataCellOverride,
+} from './stylesOverride';
 
 //
 function TransactionHistory({ items }) {
   return (
-    <TableContainer
-      component={Paper}
-      sx={{
-        maxWidth: 700,
-        margin: '0 auto',
-        borderRadius: '10px',
-      }}
-    >
+    <TableContainer component={Paper} sx={styledPaperOverride}>
       <Table aria-label="customized table">
         <TableHead>
           <TableRow>
-            <StyledTableCell
-              sx={{ textAlign: 'center', textTransform: 'upperCase' }}
-            >
+            <StyledTableCell sx={styledHeaderCellOverride}>
               Type
             </StyledTableCell>
-            <StyledTableCell
-              sx={{ textAlign: 'center', textTransform: 'upperCase' }}
-            >
+            <StyledTableCell sx={styledHeaderCellOverride}>
               Amount
             </StyledTableCell>
-            <StyledTableCell
-              sx={{ textAlign: 'center', textTransform: 'upperCase' }}
-            >
+            <StyledTableCell sx={styledHeaderCellOverride}>
               Currency
             </StyledTableCell>
           </TableRow>
@@ -61,13 +35,13 @@ function TransactionHistory({ items }) {
         <TableBody>
           {items.map(({ id, type, amount, currency }) => (
             <StyledTableRow key={id}>
-              <StyledTableCell sx={{ textAlign: 'center' }}>
+              <StyledTableCell sx={styledDataCellOverride}>
                 {type}
               </StyledTableCell>
-              <StyledTableCell sx={{ textAlign: 'center' }}>
+              <StyledTableCell sx={styledDataCellOverride}>
                 {amount}
               </StyledTableCell>
-              <StyledTableCell sx={{ textAlign: 'center' }}>
+              <StyledTableCell sx={styledDataCellOverride}>
                 {currency}
               </StyledTableCell>
             </StyledTableRow>
@@ -76,14 +50,6 @@ function TransactionHistory({ items }) {
       </Table>
     </TableContainer>
   );
-}
-
-function getDarkColor() {
-  var color = '#';
-  for (var i = 0; i < 6; i++) {
-    color += Math.floor(Math.random() * 10);
-  }
-  return color;
 }
 
 export default TransactionHistory;

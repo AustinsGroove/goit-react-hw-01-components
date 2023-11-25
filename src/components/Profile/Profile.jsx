@@ -1,4 +1,5 @@
 import css from './Profile.module.css';
+import getDarkColor from 'helpers/getDarkColor';
 
 const Profile = ({ username, tag, location, avatar, stats }) => {
   return (
@@ -36,13 +37,5 @@ const Profile = ({ username, tag, location, avatar, stats }) => {
     </div>
   );
 };
-
-function getDarkColor() {
-  var color = '#';
-  for (var i = 0; i < 6; i++) {
-    color += Math.floor(Math.random() * 10);
-  }
-  return color;
-}
 
 export default Profile;
