@@ -1,54 +1,38 @@
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
-import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 
-import StyledTableCell from './StyledTableCell';
-import StyledTableRow from './StyledTableRow';
-
 import {
-  styledPaperOverride,
-  styledHeaderCellOverride,
-  styledDataCellOverride,
-} from './stylesOverride';
+  StyledTableContainer,
+  StyledTableCell,
+  StyledTableRow,
+} from './TransactionHistory.styled';
 
 //
 function TransactionHistory({ items }) {
   return (
-    <TableContainer component={Paper} sx={styledPaperOverride}>
+    <StyledTableContainer component={Paper}>
       <Table aria-label="customized table">
         <TableHead>
           <TableRow>
-            <StyledTableCell sx={styledHeaderCellOverride}>
-              Type
-            </StyledTableCell>
-            <StyledTableCell sx={styledHeaderCellOverride}>
-              Amount
-            </StyledTableCell>
-            <StyledTableCell sx={styledHeaderCellOverride}>
-              Currency
-            </StyledTableCell>
+            <StyledTableCell>Type</StyledTableCell>
+            <StyledTableCell>Amount</StyledTableCell>
+            <StyledTableCell>Currency</StyledTableCell>
           </TableRow>
         </TableHead>
         <TableBody>
           {items.map(({ id, type, amount, currency }) => (
             <StyledTableRow key={id}>
-              <StyledTableCell sx={styledDataCellOverride}>
-                {type}
-              </StyledTableCell>
-              <StyledTableCell sx={styledDataCellOverride}>
-                {amount}
-              </StyledTableCell>
-              <StyledTableCell sx={styledDataCellOverride}>
-                {currency}
-              </StyledTableCell>
+              <StyledTableCell>{type}</StyledTableCell>
+              <StyledTableCell>{amount}</StyledTableCell>
+              <StyledTableCell>{currency}</StyledTableCell>
             </StyledTableRow>
           ))}
         </TableBody>
       </Table>
-    </TableContainer>
+    </StyledTableContainer>
   );
 }
 
